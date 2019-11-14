@@ -15,11 +15,9 @@ def product():
     HEADERS = {'User-Agent':user_agent}
  
     count = 0
-    #Because of antiscrapy, run until get the information
+    #Because of anti-scrapy, run until get the information
     while True:
         count += 1
-        #html_page = requests.Session().get(url_detail,headers = HEADERS)
-        #tree = html.fromstring(html_page.text)
         response = requests.get(url_detail, headers=HEADERS)
         html_etree = etree.HTML(response.content.decode('utf-8'))
    
@@ -32,7 +30,7 @@ def product():
 
     #print("product_title: ", product_title[0].strip())
     #print("product_price: ", product_price[0])
-    print("Attemps: %d" %count)
+    #print("Attemps: %d" %count)
     news_dictionary = {"product": "price"}
     if product_price[0] == "$139.98": # if price changed
         d = {product_title[0].strip(): "Price: " + product_price[0]}

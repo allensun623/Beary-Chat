@@ -4,7 +4,7 @@ import bearychat_send as bs
 import pysnooper
 
 """get the updated news from gate.io"""
-@pysnooper.snoop()
+
 def news():
     url = 'https://www.gate.io/articlelist/ann'
     page = requests.Session().get(url)
