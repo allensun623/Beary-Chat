@@ -34,7 +34,7 @@ def product():
     #print("product_price: ", product_price[0])
     print("Attemps: %d" %count)
     news_dictionary = {"product": "price"}
-    if product_price[0] == "$139.98":
+    if product_price[0] == "$139.98": # if price changed
         d = {product_title[0].strip(): "Price: " + product_price[0]}
     else:
         d = {product_title[0].strip(): "Price changed to: " + product_price[0]}

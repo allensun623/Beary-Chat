@@ -1,8 +1,7 @@
 from bearychat import incoming
 from loguru import logger
-import gate_news
 
-
+#send infomation to bearychat
 def send(markdown, title, text, channel, attachments):
     data = {
         "markdown": markdown,
@@ -22,37 +21,8 @@ def send(markdown, title, text, channel, attachments):
 
 def main():
     #test
-    # receive the latest news
-    news_inform = gate_news.news()
-    send(True, 
-        "GATE NEWS", 
-        "GATE NEWS", 
-        "promotion",
-        [{
-            "title": list(news_inform.keys())[1],
-            "url": list(news_inform.keys())[1],
-            "text": list(news_inform.values())[1],
-            "images": [
-                {"url": "https://cosmos-images2.imgix.net/file/spina/photo/20565/191010_nature.jpg?ixlib=rails-2.1.4&auto=format&ch=Width%2CDPR&fit=max&w=1600"}
-            ]
-        }]
-    )
-
-        # receive the latest price
-    news_inform = gate_news.news()
-    send(True, 
-        "GATE NEWS", 
-        "GATE NEWS", 
-        "promotion",
-        [{
-            "title": list(news_inform.keys())[1],
-            "url": list(news_inform.keys())[1],
-            "text": list(news_inform.values())[1],
-            "images": [
-                {"url": "https://cosmos-images2.imgix.net/file/spina/photo/20565/191010_nature.jpg?ixlib=rails-2.1.4&auto=format&ch=Width%2CDPR&fit=max&w=1600"}
-            ]
-        }]
-    )
+    pass
+       
 
 if __name__ == "__main__":
     main()
