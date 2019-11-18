@@ -23,6 +23,7 @@ def product():
         response = requests.get(url_detail, headers=HEADERS)
         html_etree = etree.HTML(response.content.decode('utf-8'))
         # get the result of price and title
+        #xpath would change frequently
         product_price = html_etree.xpath("//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()") 
         product_title = html_etree.xpath("//div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()") 
         # break the while
@@ -31,7 +32,8 @@ def product():
         # if fails    
         elif count > 50:
             break
-
+    
+    #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
     try:
@@ -48,7 +50,7 @@ def product():
     return news_dictionary
 
 def detect():
-    # return product price from amazon
+    # return product price and name from amazon
     product_inform = product()
     bs.send(True, 
             "Calculator", 
