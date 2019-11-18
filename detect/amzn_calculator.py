@@ -10,9 +10,10 @@ import bearychat_send as bs
 @pysnooper.snoop()
 def product():
     #user agent
-    url_detail = "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"
-    user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36'
-    HEADERS = {'User-Agent':user_agent}
+    url_detail = "https://www.amazon.com/dp/B01DZRY4HE/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"  
+    user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+    HEADERS = {'User-Agent':user_agent,
+                'Referer': "www.google.com"}
  
     count = 0
     #Because of anti-scrapy, run until get the information
@@ -20,12 +21,17 @@ def product():
         count += 1
         response = requests.get(url_detail, headers=HEADERS)
         html_etree = etree.HTML(response.content.decode('utf-8'))
-   
-        product_price = html_etree.xpath('//span[@class="a-size-medium a-color-price priceBlockBuyingPriceString"]/text()') 
-        product_title = html_etree.xpath('//h1[@class="a-size-large a-spacing-none"]/span[@id="productTitle"]/text()') 
-        #product_img = html_etree.xpath('//div[@id="imgTagWrapperId"]/img[@id="landingImage"]/@src') 
+        # get the result of price and title
+        product_price = html_etree.xpath("//td[@class='a-span12']/span[@id='priceblock_ourprice']/text()") 
+        product_title = html_etree.xpath("//div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()") 
 
         if product_price:
+            break
+
+        # if fails    
+        if count > 50:
+            product_price = "$$$"
+            product_title = "Failed to get infomation"
             break
 
     #print("product_title: ", product_title[0].strip())
@@ -45,7 +51,7 @@ def detect():
     bs.send(True, 
             "Calculator", 
             "Calculator", 
-            "promotion",
+            "promotion", #channel
             [{
                 "title": list(product_inform.keys())[1],
                 "url": "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
@@ -55,6 +61,7 @@ def detect():
                 ]
             }]
     )
+    
 def main():
     detect()
 

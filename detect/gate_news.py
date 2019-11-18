@@ -30,7 +30,7 @@ def detect():
     bs.send(True, 
             "GATE NEWS", 
             "GATE NEWS", 
-            "promotion",
+            "cc", #channel
             [{
                 "title": list(news_inform.keys())[1],
                 "url": list(news_inform.keys())[1],
