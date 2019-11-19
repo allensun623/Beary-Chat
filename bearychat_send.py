@@ -27,23 +27,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-"""template"""
-"""
-#test    
-    send(True, 
-        "test", 
-        "promotion discount", 
-        "promotion", 
-        [
-        {
-            "title": "title_1",
-            "url": "https://bearychat.com",
-            "text": "attachment_text",
-            "color": "#ffa500",
-            "images": [
-                {"url": "http://img3.douban.com/icon/ul15067564-30.jpg"}
-            ]
-        }
-    ])
-"""

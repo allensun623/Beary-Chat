@@ -12,14 +12,8 @@ def product_info():
         "product_price_xpath": "//tr[@id='priceblock_ourprice_row']/td[@class='a-span12']/span[@id='priceblock_ourprice']/text()",
         "current_price": "$8.99"
     }
-    amzn_product.detect(
-        data_oil_filter.get("url_product"),
-        data_oil_filter.get("url_img"),
-        data_oil_filter.get("message_title"),
-        data_oil_filter.get("product_title_xpath"),
-        data_oil_filter.get("product_price_xpath"),
-        data_oil_filter.get("current_price"),
-    )
+    amzn_product.detect(data_oil_filter)
+    
     #amazon calculator 
     data_calculator = {
         "url_product": "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
@@ -29,14 +23,7 @@ def product_info():
         "product_price_xpath": "//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()",
         "current_price": "$139.98"
     }
-    amzn_product.detect(
-        data_calculator.get("url_product"),
-        data_calculator.get("url_img"),
-        data_calculator.get("message_title"),
-        data_calculator.get("product_title_xpath"),
-        data_calculator.get("product_price_xpath"),
-        data_calculator.get("current_price"),
-    )
+    amzn_product.detect(data_calculator)
 
 def main():
     product_info()

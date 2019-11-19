@@ -26,13 +26,9 @@ def __product(url_prodect, product_title_xpath, product_price_xpath, current_pri
         #xpath would change frequently
         product_title = html_etree.xpath(product_title_xpath) 
         product_price = html_etree.xpath(product_price_xpath) 
-        # break the while
-        if product_price:
+        # break when get info or fails
+        if product_price or count > 50:
             break
-        # if fails    
-        elif count > 50:
-            break
-    
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
@@ -49,9 +45,17 @@ def __product(url_prodect, product_title_xpath, product_price_xpath, current_pri
 
     return news_dictionary
 
-def detect(url_product, url_img, message_title,product_title_xpath, product_price_xpath, current_price):
-    # return product price and name from amazon
+def detect(data):
+    # return product price and name from amazon    
+    url_product = data.get("url_product") 
+    url_img = data.get("url_img") 
+    message_title = data.get("message_title")
+    product_title_xpath = data.get("product_title_xpath")
+    product_price_xpath = data.get("product_price_xpath")
+    current_price = data.get("current_price")
+    #detect price and title of product
     product_inform = __product(url_product, product_title_xpath, product_price_xpath, current_price)
+    #send to beary chat
     bs.send(True, 
             message_title, 
             message_title, 
