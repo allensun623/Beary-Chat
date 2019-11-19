@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import amzn_product
-import pysnooper
+from detect import amzn_product
 
-@pysnooper.snoop()
 def product_info():
     #amazon oil filter 
     data_oil_filter = {
