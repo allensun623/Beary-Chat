@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from detect import amzn_calculator, amzn_oil_filter, gate_news
-
+import amzn
 def main():
-    amzn_calculator.detect()
-    amzn_oil_filter.detect()
+    amzn.product_info()
     gate_news.detect()
 
 if __name__ == "__main__":

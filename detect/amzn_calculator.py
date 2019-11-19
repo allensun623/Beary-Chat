@@ -24,8 +24,8 @@ def __product(url):
         html_etree = etree.HTML(response.content.decode('utf-8'))
         # get the result of price and title
         #xpath would change frequently
-        product_price = html_etree.xpath("//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()") 
         product_title = html_etree.xpath("//div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()") 
+        product_price = html_etree.xpath("//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()") 
         # break the while
         if product_price:
             break
