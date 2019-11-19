@@ -5,7 +5,7 @@ import pysnooper
 
 """get the updated news from gate.io"""
 
-def news():
+def __news():
     url = 'https://www.gate.io/articlelist/ann'
     page = requests.Session().get(url)
     tree = html.fromstring(page.text)
@@ -26,7 +26,7 @@ def news():
 
 def detect():
     # receive the latest news
-    news_inform = news()
+    news_inform = __news()
     bs.send(True, 
             "GATE NEWS", 
             "GATE NEWS", 

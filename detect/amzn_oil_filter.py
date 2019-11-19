@@ -24,8 +24,8 @@ def __product(url):
         html_etree = etree.HTML(response.content.decode('utf-8'))
         # get the result of price and title
         #xpath would change frequently
-        product_price = html_etree.xpath("//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()") 
-        product_title = html_etree.xpath("//div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()") 
+        product_title = html_etree.xpath("//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()") 
+        product_price = html_etree.xpath("//tr[@id='priceblock_ourprice_row']/td[@class='a-span12']/span[@id='priceblock_ourprice']/text()") 
         # break the while
         if product_price:
             break
@@ -37,7 +37,7 @@ def __product(url):
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
     try:
-        if product_price[0] == "$139.98": # if price changed
+        if product_price[0] == "$8.99": # if price changed
             d_price = {"price": "Price: " + product_price[0]}
         else:
             d_price = {"price": "Price changed to: " + product_price[0]}
@@ -51,18 +51,18 @@ def __product(url):
 
 def detect():
     # return product price and name from amazon
-    url = "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"
+    url = "https://www.amazon.com/gp/product/B002EBQX72/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1"
     product_inform = __product(url)
     bs.send(True, 
-            "Calculator", 
-            "Calculator", 
+            "OIL FILTER", 
+            "OIL FILTER", 
             "promotion", #channel
             [{
                 "title": product_inform.get("product"),
                 "url": url,
                 "text": product_inform.get("price"),
                 "images": [
-                    {"url": "https://images-na.ssl-images-amazon.com/images/I/71tPl2JkqUL._SY606_.jpg"}
+                    {"url": "https://images-na.ssl-images-amazon.com/images/I/51Pj1mJWleL._AC_SY400_.jpg"}
                 ]
             }]
     )
