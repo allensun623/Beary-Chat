@@ -49,7 +49,7 @@ def __product(url_prodect, product_title_xpath, product_price_xpath, current_pri
 
     return news_dictionary
 
-def detect(url_product, img_url, message_title,product_title_xpath, product_price_xpath, current_price):
+def detect(url_product, url_img, message_title,product_title_xpath, product_price_xpath, current_price):
     # return product price and name from amazon
     product_inform = __product(url_product, product_title_xpath, product_price_xpath, current_price)
     bs.send(True, 
@@ -61,7 +61,7 @@ def detect(url_product, img_url, message_title,product_title_xpath, product_pric
                 "url": url_product,
                 "text": product_inform.get("price"),
                 "images": [
-                    {"url": img_url}
+                    {"url": url_img}
                 ]
             }]
     )
