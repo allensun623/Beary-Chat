@@ -2,8 +2,8 @@ import time
 from detect import gate_news, gate_startup
 import amzn
 
-AMZN_HOUR = 0
-AMZN_MINUTE = 1
+AMZN_HOUR = 1
+AMZN_MINUTE = 0
 AMZN_SECOND = 0
 GATE_HOUR = 0
 GATE_MINUTE = 1
