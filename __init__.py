@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+
+INTERVAL_HOUR = 0
+INTERVAL_MINUTE = 0
+INTERVAL_SECOND = 0
