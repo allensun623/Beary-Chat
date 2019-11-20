@@ -16,11 +16,12 @@ def product_info():
     
     #amazon calculator 
     data_calculator = {
+        #xpath would change frequently
         "url_product": "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
         "url_img": "https://images-na.ssl-images-amazon.com/images/I/71tPl2JkqUL._SY606_.jpg",
         "message_title": "CALCULATOR",
-        "product_title_xpath": "//div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
-        "product_price_xpath": "//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()",
+        "product_title_xpath": "//div[@id='title_feature_div']//span[@id='productTitle']/text()",
+        "product_price_xpath": "//table[@class='a-lineitem']//td[@class='a-span12']/span[@id='priceblock_ourprice']/text()",
         "current_price": "$139.98"
     }
     amzn_product.detect(data_calculator)

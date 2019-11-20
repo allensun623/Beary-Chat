@@ -23,11 +23,10 @@ def __product(url_prodect, product_title_xpath, product_price_xpath, current_pri
         response = requests.get(url_detail, headers=HEADERS)
         html_etree = etree.HTML(response.content.decode('utf-8'))
         # get the result of price and title
-        #xpath would change frequently
         product_title = html_etree.xpath(product_title_xpath) 
         product_price = html_etree.xpath(product_price_xpath) 
         # break when get info or fails
-        if product_price or count > 50:
+        if product_price or count > 30:
             break
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",

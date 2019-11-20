@@ -13,28 +13,24 @@ def __news():
     urls = tree.xpath('//div[@class="entry"]/a/@href') # get related hyper link
 
     #news and urls save as dictionary
-    count = 0
-    news_dictionary = {"news": "urls"}
-    for i, j in zip(result, urls):
-        d = {i: "https://www.gate.io"+j}
-        news_dictionary.update(d)
-        count += 1
-        if count > 4: # print the lates five news
-            break
+    news_dictionary = {
+        "news": result[0],
+        "urls": "https://www.gate.io/" + urls[0]
+        }
     
     return news_dictionary
 
 def detect():
     # receive the latest news
-    news_inform = __news()
+    news_info = __news()
     bs.send(True, 
             "GATE NEWS", 
             "GATE NEWS", 
             "cc", #channel
             [{
-                "title": list(news_inform.keys())[1],
-                "url": list(news_inform.keys())[1],
-                "text": list(news_inform.values())[1],
+                "title": news_info.get("news"),
+                "url": news_info.get("urls"),
+                #"text": news_info.get("urls"),
                 "images": [
                     {"url": "https://cosmos-images2.imgix.net/file/spina/photo/20565/191010_nature.jpg?ixlib=rails-2.1.4&auto=format&ch=Width%2CDPR&fit=max&w=1600"}
                 ]
