@@ -32,7 +32,7 @@ def detect():
                 "url": news_info.get("urls"),
                 #"text": news_info.get("urls"),
                 "images": [
-                    {"url": "https://cosmos-images2.imgix.net/file/spina/photo/20565/191010_nature.jpg?ixlib=rails-2.1.4&auto=format&ch=Width%2CDPR&fit=max&w=1600"}
+                    {"url": "https://www.gate.io/images/gateio_en.svg"}
                 ]
             }]
     )
