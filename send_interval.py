@@ -19,9 +19,12 @@ def interval():
                     AMZN_SECOND
                     ) # interval
     while True:
+        amzn.product_info()
         gate_news.detect()
         gate_startup.detect()
-        amzn.product_info()
+        print("==================================================")
+        print("=========Interval for next detection...===========")
+        print("==================================================")
         time.sleep(interval_amzn)
 
 def main():
