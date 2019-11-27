@@ -15,6 +15,56 @@ import bearychat_send as bs
 def __product(url_product, product_title_xpath, product_price_xpath, product_size_xpath, current_price):
     #user agent
     url_detail = url_product
+    count = 0
+    #Because of anti-scrapy, running until get the information or up to 50x
+    while True:
+        count += 1
+        # get the result of price and title
+        html_etree = html_request(url_detail)
+        product_title = html_etree.xpath(product_title_xpath) 
+        product_price = html_etree.xpath(product_price_xpath) 
+        product_size = html_etree.xpath(product_size_xpath) 
+        # break when get info or fails
+        if product_price or count > 30:
+            break
+    #store data to dictionary and then return
+    news_dictionary = {"product": "Failed to get infomation",
+                        "price":"$$$"}
+    #title
+    try:
+        __product_title = product_title[0].strip()
+        if __product_title:
+            d_product = {"product": __product_title}
+        news_dictionary.update(d_product)
+    except:
+        pass
+    #size
+    try:               
+        print(product_size)
+        __product_size = product_size[0].strip()
+    except:
+        __product_size = " "
+    #price
+    try:                  
+        __product_price = product_price[0].strip()  
+        d_price = "$$$"              
+        if product_price[0].strip() == current_price: # if price changed
+            d_price = {"price": "Price: " + __product_price}
+        else:
+            d_price = {"price": "Original price: " + \
+                        current_price + "\n" + \
+                        "Sale: " + __product_price + "\n" + \
+                        __product_size}
+        news_dictionary.update(d_price)
+    except:
+        pass
+
+
+
+    return news_dictionary
+
+def html_request(url_detail):
+    #return html request with cookie, header
     cookies = 'v=3; \
                 iuuid=1A6E888B4A4B29B16FBA1299108DBE9CDCB327A9713C232B36E4DB4FF222CF03; \
                 webp=true; \
@@ -28,39 +78,12 @@ def __product(url_product, product_title_xpath, product_price_xpath, product_siz
     for line in cookies.split(';'):
         name, value = cookies.strip().split('=', 1)
         cookie[name] = value
-    count = 0
-    #Because of anti-scrapy, running until get the information or up to 50x
-    while True:
-        count += 1
-        user_agent = UserAgent().random
-        HEADERS = {'User-Agent':user_agent,
+    user_agent = UserAgent().random
+    HEADERS = {'User-Agent':user_agent,
                 'Referer': "www.google.com"}
-        response = requests.get(url_detail, cookies=cookie, headers=HEADERS)
-        html_etree = etree.HTML(response.content.decode('utf-8'))
-        # get the result of price and title
-        product_title = html_etree.xpath(product_title_xpath) 
-        product_price = html_etree.xpath(product_price_xpath) 
-        product_size = html_etree.xpath(product_size_xpath) 
-        # break when get info or fails
-        if product_price or count > 30:
-            break
-    #store data to dictionary and then return
-    news_dictionary = {"product": "Failed to get infomation",
-                        "price":"$$$"}
-    __product_title = product_title[0].strip()                  
-    __product_price = product_price[0].strip()                
-    try:
-        if product_price[0].strip() == current_price: # if price changed
-            d_price = {"price": "Price: " + __product_price}
-        else:
-            d_price = {"price": "Original price: " + current_price + "\n" + "Sale: " + __product_price + "\n" + product_size}
-        news_dictionary.update(d_price)
-        d_product = {"product": __product_title}
-        news_dictionary.update(d_product)
-    except:
-        pass
-
-    return news_dictionary
+    response = requests.get(url_detail, cookies=cookie, headers=HEADERS)
+    html_etree = etree.HTML(response.content.decode('utf-8'))
+    return html_etree
 
 def detect(data):
     # return product price and name from amazon    

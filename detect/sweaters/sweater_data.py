@@ -13,10 +13,10 @@ def product_info():
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@class='o-product-details-selection']/div[@class='product-name-price-wrapper']/h1[@class='a-heading-3']/span[@id='productTitle']/text()",
         "product_price_xpath": "//div[@class='o-product-details-selection']/div[@class='product-name-price-wrapper']/div[@id='product-price']/span[@id='productPrice']/text()",
-        "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']@class",
+        "product_size_xpath": "//div[@class='o-product-details-selection']/div[@id='sizesDropdown']/div[@class='m-dropdown is-filled']/button[@id='labelSize']/text()",
         "current_price": "$129"
     }
-    #sweater_product.detect(data_sweater_arket)
+    sweater_product.detect(data_sweater_arket)
     
     #SWEATER #2.  WOOL BUTTON SLEEVE SWEATER 
     data_sweater_pixie = {
@@ -25,31 +25,32 @@ def product_info():
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@class='product-name']/span[@class='h1']/text()",
         "product_price_xpath": "//div[@class='price-info']/div[@class='price-box']/span[@class='regular-price']/span[@class='price']/span[@class='money']/text()",
-        "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']@class",
+        "product_size_xpath": "//dl[@class='product-detail product-accordian']/dd/p[2]/text()",
         "current_price": "$99.00"
     }
-    #sweater_product.detect(data_sweater_pixie)    
+    sweater_product.detect(data_sweater_pixie)    
      
     #SWEATER #3 CONTRAST-KNIT SWEATER 
     data_sweater_petite = {
         "url_product": "https://www.cosstores.com/en_usd/women/womenswear/knitwear/jumpers/product.contrast-knit-sweater-blue.0781637001.html",
-        "url_img": "http://lp.cosstores.com/app001prod?set=source%5B01_0781637_001_7%5D,type%5BECOMLOOK%5D,device%5Bhdpi%5D,quality%5B80%5D,ImageVersion%5B201909101505%5D&call=url%5Bfile:/product/zoom%5D", 
+        "url_img": "http://http://lp.cosstores.com/app001prod?set=source[01_0781637_001_4],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[201909101505]&call=url[file:/product/main]&zoom=zoom", 
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@class='o-product-information i18n']/form[@class='o-form add-to-bag']/div[@class='title']/p[@id='productTitle']/text()",
         "product_price_xpath": "//div[@class='o-product-information i18n']/form[@class='o-form add-to-bag']/div[@id='product-price']/div[@class='price parbase']/span[@id='productPrice']/text()",
-        "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']@class",
+        "product_size_xpath": "//div[@class='product-description']/div[@id='description']/p[11]/text()",
         "current_price": "$115"
     }
-    #sweater_product.detect(data_sweater_petite)
+    sweater_product.detect(data_sweater_petite)
 
     
     #SWEATER #4 averie cashmere blend sweater - blush 
     data_sweater_petite = {
+        #peice occurs when selecting size 
         "url_product": "https://petitestudionyc.com/collections/tops/products/averie-sweater-blush?rfsn=924456.2cb4d&utm_source=refersion&utm_medium=affiliate&utm_campaign=924456.2cb4d&variant=30340785045584",
         "url_img": "https://cdn.shopify.com/s/files/1/1094/6908/products/7.jpg?v=1571157084", 
         "message_title": "SWEATER",
-        "product_title_xpath": "//div[@id='PageContainer']/div[@class='page-wrap']/div[@id='content']/div[@id='shopify-section-product-template']/div[@id='product-4178861293648']/div[@id='product-right']/div[@id='product-description']/h5[@class='colored-text product-title translation-pending']/text()",
-        "product_price_xpath": "//span[@class='product-price colored-text onsale']/span/span[@class='money']/text()",
+        "product_title_xpath": "//div[@id='product-description']/h5[@class='colored-text product-title translation-pending']/text()",
+        "product_price_xpath": "//div[@id='product-description']//p[@id='product-price']/text()",
         "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']/attribute::*",
         "current_price": "$229.00"
     }
