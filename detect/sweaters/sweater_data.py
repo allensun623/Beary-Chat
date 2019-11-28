@@ -50,7 +50,7 @@ def product_info():
         "url_img": "https://cdn.shopify.com/s/files/1/1094/6908/products/7.jpg?v=1571157084", 
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@id='product-description']/h5[@class='colored-text product-title translation-pending']/text()",
-        "product_price_xpath": "//div[@id='product-description']//p[@id='product-price']/text()",
+        "product_price_xpath": "//div[@id='PageContainer']/div[@class='page-wrap']/div[@id='content']/div[@id='shopify-section-product-template']/div[@id='product-4178861293648']/div[@id='product-right']/div[@id='product-description']/div[1]/p[@id='product-price']/span[@class='product-price colored-text onsale']/span/span[@class='money']/text()",
         "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']/attribute::*",
         "current_price": "$229.00"
     }
