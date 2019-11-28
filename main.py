@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from detect import gate_news, gate_startup
+from detect.gate import gate_news, gate_startup
 import amzn
 
 def main():
