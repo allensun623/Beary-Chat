@@ -33,7 +33,7 @@ def product_info():
     #SWEATER #3 CONTRAST-KNIT SWEATER 
     data_sweater_petite = {
         "url_product": "https://www.cosstores.com/en_usd/women/womenswear/knitwear/jumpers/product.contrast-knit-sweater-blue.0781637001.html",
-        "url_img": "http://http://lp.cosstores.com/app001prod?set=source[01_0781637_001_4],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[201909101505]&call=url[file:/product/main]&zoom=zoom", 
+        "url_img": "https://lp.cosstores.com/app001prod?set=key%5Bresolve.pixelRatio%5D,value%5B2%5D&set=key%5Bresolve.width%5D,value%5B150%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&set=key%5Bresolve.quality%5D,value%5B90%5D&set=ImageVersion%5B201909101505%5D,source%5B01_0781637_001_4%5D,type%5BECOMLOOK%5D&call=url%5Bfile:/product/dynamic.chain%5D", 
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@class='o-product-information i18n']/form[@class='o-form add-to-bag']/div[@class='title']/p[@id='productTitle']/text()",
         "product_price_xpath": "//div[@class='o-product-information i18n']/form[@class='o-form add-to-bag']/div[@id='product-price']/div[@class='price parbase']/span[@id='productPrice']/text()",
@@ -50,8 +50,8 @@ def product_info():
         "url_img": "https://cdn.shopify.com/s/files/1/1094/6908/products/7.jpg?v=1571157084", 
         "message_title": "SWEATER",
         "product_title_xpath": "//div[@id='product-description']/h5[@class='colored-text product-title translation-pending']/text()",
-        "product_price_xpath": "//div[@id='PageContainer']/div[@class='page-wrap']/div[@id='content']/div[@id='shopify-section-product-template']/div[@id='product-4178861293648']/div[@id='product-right']/div[@id='product-description']/div[1]/p[@id='product-price']/span[@class='product-price colored-text onsale']/span/span[@class='money']/text()",
-        "product_size_xpath": "//div[@id='size']/button[@id='size_0781637001003']/attribute::*",
+        "product_price_xpath": "//span[@class='money']/text()",
+        "product_size_xpath": "//button[@id='size_0781637001003']/attribute::*",
         "current_price": "$229.00"
     }
     sweater_product.detect(data_sweater_petite)
