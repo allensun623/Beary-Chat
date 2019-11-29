@@ -1,6 +1,7 @@
 import time
 from detect.gate import gate_news, gate_startup
 from detect.amazon import amzn
+from detect.sweaters import sweater_data
 
 AMZN_HOUR = 1
 AMZN_MINUTE = 0
@@ -22,6 +23,7 @@ def interval():
         amzn.product_info()
         gate_news.detect()
         gate_startup.detect()
+        sweater_data.product_info()
         print("==================================================")
         print("=========Interval for next detection...===========")
         print("==================================================")

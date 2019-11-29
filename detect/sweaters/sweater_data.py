@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import sweater_product
+from detect.sweaters import sweater_product
 
 """monitor the sweaters data"""
 def product_info():
