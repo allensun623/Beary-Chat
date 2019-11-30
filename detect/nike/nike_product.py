@@ -24,7 +24,7 @@ def __product(url_product, product_title_xpath, product_price_xpath, product_siz
         product_title = html_etree.xpath(product_title_xpath) 
         product_price = html_etree.xpath(product_price_xpath) 
         product_size = html_etree.xpath(product_size_xpath) 
-        # break when get info or fails
+        # break when get all info or fails
         if product_price or product_title or count > 30:
             break
     #store data to dictionary and then return
@@ -58,9 +58,7 @@ def __product(url_product, product_title_xpath, product_price_xpath, product_siz
         news_dictionary.update(d_price)
     except:
         pass
-
-
-
+    
     return news_dictionary
 
 def html_request(url_detail):

@@ -2,6 +2,8 @@ import time
 from detect.gate import gate_news, gate_startup
 from detect.amazon import amzn
 from detect.sweaters import sweater_data
+import threading 
+import pysnooper
 
 AMZN_HOUR = 1
 AMZN_MINUTE = 0
@@ -19,6 +21,8 @@ def interval():
                     AMZN_MINUTE,
                     AMZN_SECOND
                     ) # interval
+    interval_nike = __sleeptime_nike(0, 0, 30)
+
     while True:
         amzn.product_info()
         gate_news.detect()
@@ -29,8 +33,33 @@ def interval():
         print("==================================================")
         time.sleep(interval_amzn)
 
+@pysnooper.snoop()
+def run_thread(detect_function, detect_interval, detect_name):
+    __run_detect = detect_function
+    __interval = detect_interval # interval
+    while True:
+        __run_detect 
+        print("detect_name", detect_name)
+        print("__interval", __interval)
+        print("==================================================")
+        print("=========Interval for next detection...===========")
+        print("==================================================")
+        time.sleep(__interval)
+
+def interval_threading():
+    interval_amzn = __sleeptime(0, 0, 45)
+    interval_gate = __sleeptime(0, 1, 0)
+    t1 = threading.Thread(target=run_thread, 
+                            args=(amzn.product_info(), interval_amzn, "amazon"))
+    t2 = threading.Thread(target=run_thread, 
+                            args=(gate_news.detect(), interval_gate, "gate"))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+
 def main():
-    interval()
+    interval_threading()
 
 if __name__ == "__main__":
     main()
