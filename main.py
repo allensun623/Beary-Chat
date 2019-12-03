@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from detect.gate import gate_news, gate_startup
 from detect.amazon import amzn
+from detect.sweaters import sweater_data
 
 def main():
     amzn.product_info()
