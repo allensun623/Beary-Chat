@@ -11,7 +11,7 @@ def send(markdown, title, text, channel, attachments):
         "channel": channel,
         "attachments": attachments,
     }
-
+    #channal
     resp = incoming.send(
         "https://hook.bearychat.com/=bwH7H/incoming/fa39b2010f0e6bba1b79a9f5af550e29",
         data)
