@@ -16,19 +16,17 @@ def __sleeptime(hr,min,sec):
     return hr*3600 + min*60 + sec
 
 def run_process(detect_function, detect_interval, detect_name):
-    __function = detect_function
-    __interval = detect_interval # interval
-    __name = detect_name
     while True:
-        __function() #run detection function
-        print("Run function: ", __name)
+        detect_function() #run detection function
+        print("Run function: ", detect_name)
         print("==================================================")
         print("=========Interval for next detection...===========")
         print("==================================================")
-        time.sleep(__interval)
+        time.sleep(detect_interval)
 
 def interval_processing():
-    #multiple processes
+#multiple processes   
+    #interval timer
     interval_gate_startup = __sleeptime(GATE_HOUR,
                                         GATE_MINUTE,
                                         GATE_SECOND)
