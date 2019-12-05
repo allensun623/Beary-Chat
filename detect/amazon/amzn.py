@@ -25,6 +25,16 @@ def product_info():
         "current_price": "$8.99"
     }
     amzn_product.detect(data_oil_filter)
+    #amazon coffee
+    data_coffee = {
+        "url_product": "https://www.amazon.com/gp/product/B00OVBGFZI/ref=ox_sc_act_title_2?smid=ACK6XR0AS3JM0&psc=1",
+        "url_img": "https://images-na.ssl-images-amazon.com/images/I/71gHseSfYsL._SX522_.jpg",
+        "message_title": "The Real Deal Enema Coffee",
+        "product_title_xpath": "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
+        "product_price_xpath": "//tr[@id='priceblock_saleprice_row']/td[@class='a-span12']/span[@id='priceblock_saleprice']/text()",
+        "current_price": "$29.97"
+    }
+    amzn_product.detect(data_coffee)    
   
 def main():
     product_info()
