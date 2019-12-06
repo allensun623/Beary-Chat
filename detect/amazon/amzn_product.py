@@ -10,8 +10,9 @@ from fake_useragent import UserAgent
 """get the information from amazon"""
 
 @pysnooper.snoop()
-def __product(url_product, product_title_xpath, product_price_xpath, current_price):
+def __product(url_product, product_title_xpath, product_price_xpath, current_price, target_price):
     #user agent
+    global if_send
     url_detail = url_product
     count = 0
     #Because of anti-scrapy, running until get the information or up to 50x
@@ -38,12 +39,21 @@ def __product(url_product, product_title_xpath, product_price_xpath, current_pri
         if product_price[0] == current_price: # if price changed
             d_price = {"price": "Price: " + product_price[0]}
         else:
+            print(price_comparison(product_price[0], target_price))
+            if_send = price_comparison(product_price[0], target_price)
             d_price = {"price": "Original price: " + current_price + "\n" + "Sale: " + product_price[0]}
         news_dictionary.update(d_price)
     except:
         pass
-
     return news_dictionary
+
+@pysnooper.snoop()    
+def price_comparison(c_price, t_price):
+    #remove the first charactor "$" of the string and convert to float
+    current_price = float(c_price[1:])
+    target_price = float(t_price)
+    #if the current price <= target price, return boolean true
+    return (True if current_price <= target_price else False)
 
 def html_request(url_detail):
     #return html request with cookie, header
@@ -66,31 +76,39 @@ def html_request(url_detail):
     response = requests.get(url_detail, cookies=cookie, headers=HEADERS)
     html_etree = etree.HTML(response.content.decode('utf-8'))
     return html_etree
-
+@pysnooper.snoop()
 def detect(data):
     # return product price and name from amazon    
+    global if_send #bearychat send when reaching target price
+    if_send = False
     url_product = data.get("url_product") 
     url_img = data.get("url_img") 
     message_title = data.get("message_title")
     product_title_xpath = data.get("product_title_xpath")
     product_price_xpath = data.get("product_price_xpath")
     current_price = data.get("current_price")
+    target_price = data.get("target_price")
     #detect price and title of product
-    product_inform = __product(url_product, product_title_xpath, product_price_xpath, current_price)
+    product_inform = __product(url_product, 
+                                product_title_xpath, 
+                                product_price_xpath, 
+                                current_price,
+                                target_price)
     #send to beary chat
-    bs.send(True, 
-            message_title, 
-            message_title, 
-            "promotion", #channel
-            [{
-                "title": product_inform.get("product"),
-                "url": url_product,
-                "text": product_inform.get("price"),
-                "images": [
-                    {"url": url_img}
-                ]
-            }]
-    )
+    if if_send:
+        bs.send(True, 
+                message_title, 
+                message_title, 
+                "promotion", #channel
+                [{
+                    "title": product_inform.get("product"),
+                    "url": url_product,
+                    "text": product_inform.get("price"),
+                    "images": [
+                        {"url": url_img}
+                    ]
+                }]
+        )
     
 def main():
     pass

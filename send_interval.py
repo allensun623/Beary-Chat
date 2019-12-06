@@ -4,10 +4,10 @@ from detect.amazon import amzn
 from multiprocessing import Process
 
 
-AMZN_HOUR = 1
-AMZN_MINUTE = 0
+AMZN_HOUR = 0
+AMZN_MINUTE = 30
 AMZN_SECOND = 0
-GATE_HOUR = 1
+GATE_HOUR = 12
 GATE_MINUTE = 0
 GATE_SECOND = 0
 

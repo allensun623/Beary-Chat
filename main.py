@@ -5,10 +5,10 @@ from detect.sweaters import sweater_data
 import send_interval as sil
 
 def main():
-    #amzn.product_info()
     #gate_news.detect()
     #gate_startup.detect()
-    sil.interval_processing()
+    amzn.product_info()
+    #sil.interval_processing()
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@
 
 from detect.amazon import amzn_product
 
+
 def product_info():
   
     #amazon calculator 
@@ -12,7 +13,8 @@ def product_info():
         "message_title": "CALCULATOR",
         "product_title_xpath": "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
         "product_price_xpath": "//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()",
-        "current_price": "$139.98"
+        "current_price": "$139.98",
+        "target_price": "129.2" # target price to purchase the item
     }
     amzn_product.detect(data_calculator)
     #amazon oil filter 
@@ -22,7 +24,9 @@ def product_info():
         "message_title": "OIL FILTER",
         "product_title_xpath": "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
         "product_price_xpath": "//tr[@id='priceblock_ourprice_row']/td[@class='a-span12']/span[@id='priceblock_ourprice']/text()",
-        "current_price": "$8.99"
+        "current_price": "$8.99",
+        "target_price": "5.2"
+
     }
     amzn_product.detect(data_oil_filter)
     #amazon coffee
@@ -32,7 +36,9 @@ def product_info():
         "message_title": "The Real Deal Enema Coffee",
         "product_title_xpath": "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
         "product_price_xpath": "//tr[@id='priceblock_saleprice_row']/td[@class='a-span12']/span[@id='priceblock_saleprice']/text()",
-        "current_price": "$29.97"
+        "current_price": "$29.97",
+        "target_price": "27.2"
+
     }
     amzn_product.detect(data_coffee)    
   
