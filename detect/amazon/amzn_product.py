@@ -30,7 +30,7 @@ def __product(url_product, product_title_xpath, product_price_xpath, current_pri
                         "price":"$$$"}
     #title
     try:
-        d_product = {"product": product_title[0]}
+        d_product = {"product": product_title[0].replace('\n','')}
         news_dictionary.update(d_product)
     except:
         pass
@@ -45,9 +45,10 @@ def __product(url_product, product_title_xpath, product_price_xpath, current_pri
         news_dictionary.update(d_price)
     except:
         pass
+    print(news_dictionary)
     return news_dictionary
 
-@pysnooper.snoop()    
+   
 def price_comparison(c_price, t_price):
     #remove the first charactor "$" of the string and convert to float
     current_price = float(c_price[1:])
@@ -76,7 +77,7 @@ def html_request(url_detail):
     response = requests.get(url_detail, cookies=cookie, headers=HEADERS)
     html_etree = etree.HTML(response.content.decode('utf-8'))
     return html_etree
-@pysnooper.snoop()
+
 def detect(data):
     # return product price and name from amazon    
     global if_send #bearychat send when reaching target price
