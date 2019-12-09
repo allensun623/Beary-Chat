@@ -8,13 +8,13 @@ def product_info():
     #amazon calculator 
     data_calculator = {
         #xpath would change frequently
-        "url_product": "https://www.amazon.com/dp/B01NAZGQEA/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
-        "url_img": "https://images-na.ssl-images-amazon.com/images/I/71tPl2JkqUL._SY606_.jpg",
+        "url_product": "https://www.amazon.com/dp/B07FK8SQDQ/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
+        "url_img": "https://images-na.ssl-images-amazon.com/images/I/51JN-fLvUiL.jpg",
         "message_title": "CALCULATOR",
         "product_title_xpath": "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()",
-        "product_price_xpath": "//tr[@id='priceblock_pospromoprice_row']/td[@class='a-span12']/span[@id='priceblock_pospromoprice']/text()",
-        "current_price": "$139.98",
-        "target_price": "129.2" # target price to purchase the item
+        "product_price_xpath": "//tr[@id='priceblock_ourprice_row']/td[@class='a-span12']/span[@id='priceblock_ourprice']/text()",
+        "current_price": "$118.98",
+        "target_price": "109.2" # target price to purchase the item
     }
     amzn_product.detect(data_calculator)
     #amazon oil filter 
