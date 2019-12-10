@@ -11,8 +11,8 @@ def __startup():
     page = requests.Session().get(url)
     tree = html.fromstring(page.text)
     startup_project = tree.xpath('//a[@class="su-item-title"]/h3/text()') #get startup project
-    startup_tpye = tree.xpath("//div[@class='item-box zt1']/div[@class='ti-status status-txt']/text()")
-    time_tpye = tree.xpath("//div[@class='item-box zt1']/div[@class='item-state']/text()")
+    startup_tpye = tree.xpath("//div[@class='ti-status status-txt']/text()")
+    time_tpye = tree.xpath("//div[@class='item-state']/text()")
     timer = tree.xpath('//div[@class="item-state"]/span[@class="timer-box"]/text()')
     amount = tree.xpath('//div[@class="item-box zt2"]/ul[@class="su-dtl"]/li/b[@class="item-total"]/text()')
     url_img = tree.xpath('//a[@class="img-con"]/img[@class="item-img"]/@src') # get related hyper link
