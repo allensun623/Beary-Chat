@@ -11,6 +11,8 @@ def __startup():
     page = requests.Session().get(url)
     tree = html.fromstring(page.text)
     startup_project = tree.xpath('//a[@class="su-item-title"]/h3/text()') #get startup project
+    startup_tpye = tree.xpath("//div[@class='item-box zt1']/div[@class='ti-status status-txt']/text()")
+    time_tpye = tree.xpath("//div[@class='item-box zt1']/div[@class='item-state']/text()")
     timer = tree.xpath('//div[@class="item-state"]/span[@class="timer-box"]/text()')
     amount = tree.xpath('//div[@class="item-box zt2"]/ul[@class="su-dtl"]/li/b[@class="item-total"]/text()')
     url_img = tree.xpath('//a[@class="img-con"]/img[@class="item-img"]/@src') # get related hyper link
@@ -18,9 +20,9 @@ def __startup():
     #news and urls save as dictionary
     news_dictionary = {
         "url_project": url,
-        "startup_project": startup_project[0],
+        "startup_project": startup_tpye[0]+ ": " + startup_project[0],
         "amount": "目标: " + amount[0].replace(' ', ''), #no space
-        "timer": "距开始: " + timer[0],
+        "timer": time_tpye[0].replace('\r', '').replace('\n', '').replace(' ', '') + " " + timer[0],
         "url_img": url_img[0] 
         }
     
