@@ -3,7 +3,8 @@ Using Beary-Chat API
 
 Supervise needed information
 
-* keep the pythin script running in the backgroup:
+## Run the Python with screen
+* keep the python script running in the backgroup:
     - use screen: screen
     - run script: python3 main.py &
 

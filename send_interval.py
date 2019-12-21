@@ -1,6 +1,6 @@
 import time
 from detect.gate import gate
-from detect.amazon import amzn
+from detect.amazon import amznJSON as amzn
 from multiprocessing import Process
 
 
