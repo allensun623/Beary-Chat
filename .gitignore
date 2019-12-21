@@ -3,3 +3,6 @@
 
 #python compiles file
 *.pyc
+
+#pychahce
+__pycache__/

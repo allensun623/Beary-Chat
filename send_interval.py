@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import time
 from detect.gate import gate
 from detect.amazon import amzn

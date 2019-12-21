@@ -13,7 +13,7 @@ def __product(url_product, product_title_xpath, product_price_xpath, current_pri
     if_send = False
     url_detail = url_product
     count = 0
-    #Because of anti-scrapy, running until get the information or up to 50x
+    #Because of anti-scrapy, running until get the information or up to 30x
     while True:
         count += 1
         html_etree = html_request(url_detail)
