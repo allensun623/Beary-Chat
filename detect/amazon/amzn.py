@@ -6,23 +6,26 @@ import bearychat_send as bs
 import random
 from fake_useragent import UserAgent
 import json
+import pysnooper
 """get the information from amazon"""
 
-def __product(url_product, product_title_xpath, product_price_xpath, current_price, target_price):
+@pysnooper.snoop()
+def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpath, target_price):
     #user agent
     if_send = False
     url_detail = url_product
-    count = 0
     #Because of anti-scrapy, running until get the information or up to 30x
-    while True:
-        count += 1
-        html_etree = html_request(url_detail)
-        # get the result of price and title
-        product_title = html_etree.xpath(product_title_xpath) 
-        product_price = html_etree.xpath(product_price_xpath) 
-        # break when get info or fails
-        if product_price or count > 30:
+    html_etree = html_request(url_detail)
+    # url for image
+    url_img = html_etree.xpath(url_img_xpath)[0]
+    # get the result of price and title
+    product_title = html_etree.xpath(product_title_xpath)         
+    for price in product_price_xpath:
+        product_price = html_etree.xpath(price) 
+    # break when getting info
+        if product_price:
             break
+            
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
@@ -34,19 +37,16 @@ def __product(url_product, product_title_xpath, product_price_xpath, current_pri
         pass
     #price
     try:
-        if product_price[0] == current_price: # if price changed
-            d_price = {"price": "Price: " + product_price[0]}
-        else:
-            print(price_comparison(product_price[0], target_price))
-            if_send = price_comparison(product_price[0], target_price)
-            d_price = {"price": "Original price: " + current_price + "\n" + "Sale: " + product_price[0]}
+        print(price_comparison(product_price[0], target_price))
+        if_send = price_comparison(product_price[0], target_price)
+        d_price = {"price": "Sale: " + product_price[0] + " (target price: $%s)"%target_price}
         news_dictionary.update(d_price)
     except:
         pass
     print(news_dictionary)
-    return (if_send, news_dictionary)
+    return (if_send, url_img, news_dictionary)
 
-   
+@pysnooper.snoop()   
 def price_comparison(c_price, t_price):
     #remove the first charactor "$" of the string and convert to float
     current_price = float(c_price[1:])
@@ -79,17 +79,16 @@ def html_request(url_detail):
 def detect(data):
     # return product price and name from amazon    
     url_product = data.get("url_product") 
-    url_img = data.get("url_img") 
+    url_img_xpath = data.get("url_img") 
     message_title = data.get("message_title")
     product_title_xpath = data.get("product_title_xpath")
-    product_price_xpath = data.get("product_price_xpath")
-    current_price = data.get("current_price")
+    product_price_xpath = data.get("product_price_xpath")    
     target_price = data.get("target_price")
     #detect price and title of product
-    if_send, product_inform = __product(url_product, 
+    if_send, url_img, product_inform = __product(url_product, 
+                                url_img_xpath,
                                 product_title_xpath, 
                                 product_price_xpath, 
-                                current_price,
                                 target_price)
     #send to beary chat
     if if_send:
@@ -108,11 +107,27 @@ def detect(data):
         )
 
 def product_info():
-    "get production data from json"
+    """get xpath information"""
     with open('in/amzn.json') as json_file:
         data = json.load(json_file)
-    for product in data.values():
-        detect(product)
+    for key, value in data.items():
+        url_product = value.get("url_product")
+        url_img ="//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src"
+        product_title_xpath = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
+        product_price_xpath = ["//tr[@id='priceblock_ourprice_row']/td[@class='a-span12']/span[@id='priceblock_ourprice']/text()",
+                            "//tr[@id='priceblock_saleprice_row']/td[@class='a-span12']/span[@id='priceblock_saleprice']/text()"]
+        message_title = key
+        target_price = value.get("target_price")
+        product_xpath = {
+            "url_product": url_product,
+            "url_img": url_img,
+            "message_title": message_title,
+            "product_title_xpath": product_title_xpath,
+            "product_price_xpath": product_price_xpath,
+            "target_price": target_price 
+        }
+
+        detect(product_xpath)
 
 def main():
     pass

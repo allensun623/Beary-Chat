@@ -22,7 +22,7 @@ def scrapy_zhihu():
     driver.execute_script(js)
     driver.close()
     driver.switch_to_window(driver.window_handles[0])
-    for i in range(100):
+    for i in range(10):
         js="var q=document.documentElement.scrollTop=10000000"  
         driver.execute_script(js)
 
