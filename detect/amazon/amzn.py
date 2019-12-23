@@ -25,16 +25,12 @@ def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpa
     try:
         product_title = html_etree.xpath(product_title_xpath)[0]         
     except: 
-        product_title = "Failed to get infomation"
-    try:
-        for price in product_price_xpath:
+        product_title = "Failed to get infomation"    
+    for price in product_price_xpath:
+        try:
             product_price = html_etree.xpath(price)[0] 
-            # break when getting info
-            if product_price:
-                break
-    except:
-        product_price = "$$$"
-
+        except:
+            pass
             
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
