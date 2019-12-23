@@ -17,29 +17,39 @@ def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpa
     #Because of anti-scrapy, running until get the information or up to 30x
     html_etree = html_request(url_detail)
     # url for image
-    url_img = html_etree.xpath(url_img_xpath)[0]
+    try:
+        url_img = html_etree.xpath(url_img_xpath)[0]
+    except:
+        url_img = "http://media.rhizome.org/blog/9604/Vine-Oops-404.png"
     # get the result of price and title
-    product_title = html_etree.xpath(product_title_xpath)         
-    for price in product_price_xpath:
-        product_price = html_etree.xpath(price) 
-    # break when getting info
-        if product_price:
-            break
+    try:
+        product_title = html_etree.xpath(product_title_xpath)[0]         
+    except: 
+        product_title = "Failed to get infomation"
+    try:
+        for price in product_price_xpath:
+            product_price = html_etree.xpath(price)[0] 
+            # break when getting info
+            if product_price:
+                break
+    except:
+        product_price = "$$$"
+
             
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
     #title
     try:
-        d_product = {"product": product_title[0].replace('\n','')}
+        d_product = {"product": product_title.replace('\n','')}
         news_dictionary.update(d_product)
     except:
         pass
     #price
     try:
-        print(price_comparison(product_price[0], target_price))
-        if_send = price_comparison(product_price[0], target_price)
-        d_price = {"price": "Sale: " + product_price[0] + " (target price: $%s)"%target_price}
+        print(price_comparison(product_price, target_price))
+        if_send = price_comparison(product_price, target_price)
+        d_price = {"price": "Sale: " + product_price + " (target price: $%s)"%target_price}
         news_dictionary.update(d_price)
     except:
         pass
