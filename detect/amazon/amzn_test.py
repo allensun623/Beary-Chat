@@ -13,7 +13,7 @@ def __product():
     url_detail = "https://www.amazon.com/dp/B07FK8SQDQ/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"
     #Because of anti-scrapy, running until get the information or up to 30x
     html_etree = html_request(url_detail)
-    
+    print(html_etree)
     product_title_xpath = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
     title = html_etree.xpath(product_title_xpath)
     print(title)
