@@ -15,8 +15,8 @@ def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpa
     if_send = False
     url_detail = url_product
     count = 1
-    while count < 200:
-        #Because of anti-scrapy, running until get the information or up to 30x
+    #Because of anti-scrapy, running until get the information or up to 10000x
+    while count < 10000:
         html_etree = html_request(url_detail)
         # url for image
         try:

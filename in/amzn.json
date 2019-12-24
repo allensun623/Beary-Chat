@@ -3,19 +3,19 @@
     {
      "CALCULATOR": {
          "url_product": "https://www.amazon.com/dp/B07FK8SQDQ/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1",
-         "target_price": "1109.2" 
+         "target_price": "109.2" 
      },
      "OIL FILTER": {
          "url_product": "https://www.amazon.com/gp/product/B002EBQX72/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
-         "target_price": "15.2"
+         "target_price": "5.2"
      },
      "The Real Deal Enema Coffee": {
          "url_product": "https://www.amazon.com/gp/product/B00OVBGFZI/ref=ox_sc_act_title_2?smid=ACK6XR0AS3JM0&psc=1",
-         "target_price": "127.2"
+         "target_price": "27.2"
      },
      "Gaming Chair": {
         "url_product": "https://www.amazon.com/Homall-Computer-Executive-Ergonomic-Adjustable/dp/B07N8T4BBT/ref=sr_1_49?crid=3EKP25UVFIGIC&keywords=office%2Bchair&qid=1577122169&sprefix=office%2B%2Caps%2C212&sr=8-49&th=1",
-        "target_price": "1123"
+        "target_price": "123"
    }
   }
   
