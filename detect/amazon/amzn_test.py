@@ -17,9 +17,12 @@ def __product():
     product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
     product_title_xpath2 = "//h1[@id='title']/span[@id='productTitle']/text()"
     product_title_xpath3 = "//span[@id='productTitle']/text()"
-    title1 = html_etree.xpath(product_title_xpath1)
-    title2 = html_etree.xpath(product_title_xpath2)
-    title3 = html_etree.xpath(product_title_xpath3)
+    count = 1
+    while count > 30:
+        title1 = html_etree.xpath(product_title_xpath1)
+        title2 = html_etree.xpath(product_title_xpath2)
+        title3 = html_etree.xpath(product_title_xpath3)
+        count += 1
     # url for image
     #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
     #print(url_img)
