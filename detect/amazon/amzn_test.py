@@ -15,7 +15,7 @@ def __product():
     count = 1
     title = ""
     at_count = 0
-    while count < 100:
+    while count < 500:
         html_etree = html_request(url_detail)
         print(html_etree)
         product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
@@ -43,6 +43,7 @@ def __product():
         except:
             pass
         count += 1
+    print(at_count)
     # url for image
     #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
     #print(url_img)
