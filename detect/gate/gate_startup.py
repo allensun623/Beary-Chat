@@ -43,6 +43,7 @@ def detect():
             "startup_project": "NONE",
             "url_project": "NONE",
             "amount": "NONE",
+            "timer": "",
             "url_img": "https://www.gate.io/images/startup/pendding.png"
         }
     bs.send(True, 
