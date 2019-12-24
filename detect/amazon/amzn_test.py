@@ -41,7 +41,7 @@ def html_request(url_detail):
     user_agent = UserAgent().random
     HEADERS = {'User-Agent':user_agent,
                 'Referer': "www.google.com"}
-    response = requests.get(url_detail, cookies=cookies, headers=HEADERS)
+    response = requests.get(url_detail, cookies=cookie, headers=HEADERS)
     html_etree = etree.HTML(response.content.decode('utf-8'))
     return html_etree
 
