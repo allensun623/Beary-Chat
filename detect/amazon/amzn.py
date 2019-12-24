@@ -14,25 +14,31 @@ def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpa
     #user agent
     if_send = False
     url_detail = url_product
-    #Because of anti-scrapy, running until get the information or up to 30x
-    html_etree = html_request(url_detail)
-    # url for image
-    try:
-        url_img = html_etree.xpath(url_img_xpath)[0]
-    except:
-        url_img = "http://media.rhizome.org/blog/9604/Vine-Oops-404.png"
-    # get the result of price and title
-    try:
-        product_title = html_etree.xpath(product_title_xpath)[0]         
-    except: 
-        product_title = "Failed to get infomation" 
-        if_send = True   
-    for price in product_price_xpath:
+    count = 1
+    while count < 200:
+        #Because of anti-scrapy, running until get the information or up to 30x
+        html_etree = html_request(url_detail)
+        # url for image
         try:
-            product_price = html_etree.xpath(price)[0] 
+            url_img = html_etree.xpath(url_img_xpath)[0]
         except:
-            pass
-            
+            url_img = "http://media.rhizome.org/blog/9604/Vine-Oops-404.png"
+        # get the result of price and title
+        for price in product_price_xpath:
+            try:
+                product_price = html_etree.xpath(price)[0] 
+            except:
+                pass
+        try:
+            product_title = html_etree.xpath(product_title_xpath)[0]         
+            if_send = True
+            break
+        except: 
+            product_title = "Failed to get infomation" 
+            if_send = True   
+
+        count += 1
+                
     #store data to dictionary and then return
     news_dictionary = {"product": "Failed to get infomation",
                         "price":"$$$"}
@@ -70,7 +76,7 @@ def html_request(url_detail):
                 __guid=26581345.3954606544145667000.1530879049181.8303; \
                 _lxsdk_cuid=1646f808301c8-0a4e19f5421593-5d4e211f-100200-1646f808302c8; \
                 _lxsdk=1A6E888B4A4B29B16FBA1299108DBE9CDCB327A9713C232B36E4DB4FF222CF03; \
-                monitor_count=1; 
+                monitor_count=1; \
                 _lxsdk_s=16472ee89ec-de2-f91-ed0%7C%7C5; \
                 __mta=189118996.1530879050545.1530936763555.1530937843742.18'
     cookie = {}
@@ -139,8 +145,8 @@ def product_info():
 
 def main():
     
-    #detect()
+    detect()
+
 
 if __name__ == "__main__":
     main()
-
