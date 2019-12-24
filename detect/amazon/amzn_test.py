@@ -12,16 +12,24 @@ import pysnooper
 def __product():
     url_detail = "https://www.amazon.com/dp/B07FK8SQDQ/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"
     #Because of anti-scrapy, running until get the information or up to 30x
-    html_etree = html_request(url_detail)
-    print(html_etree)
-    product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
-    product_title_xpath2 = "//h1[@id='title']/span[@id='productTitle']/text()"
-    product_title_xpath3 = "//span[@id='productTitle']/text()"
     count = 1
-    while count > 30:
+    title = ""
+    at_count = 0
+    while count < 100:
+        html_etree = html_request(url_detail)
+        print(html_etree)
+        product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
+        product_title_xpath2 = "//h1[@id='title']/span[@id='productTitle']/text()"
+        product_title_xpath3 = "//span[@id='productTitle']/text()" 
         title1 = html_etree.xpath(product_title_xpath1)
         title2 = html_etree.xpath(product_title_xpath2)
         title3 = html_etree.xpath(product_title_xpath3)
+        if title1 is not None:
+            at_count += 1 
+        if title2 is not None:
+            at_count += 1 
+        if title3 is not None:
+            at_count += 1 
         count += 1
     # url for image
     #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
