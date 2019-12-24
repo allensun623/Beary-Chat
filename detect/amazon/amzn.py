@@ -138,7 +138,7 @@ def product_info():
         detect(product_xpath)
 
 def main():
-    pass
+    
     #detect()
 
 if __name__ == "__main__":

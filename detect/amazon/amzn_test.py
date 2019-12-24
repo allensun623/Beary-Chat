@@ -8,14 +8,14 @@ import json
 import pysnooper
 """get the information from amazon"""
 
-@pysnooper.snoop()
 def __product():
     url_detail = "https://www.amazon.com/dp/B07FK8SQDQ/ref=twister_B00WS2T4ZA?_encoding=UTF8&th=1"
     #Because of anti-scrapy, running until get the information or up to 30x
     count = 1
     title = ""
     at_count = 0
-    while count < 500:
+    title_list = {}
+    while count < 100:
         html_etree = html_request(url_detail)
         print(html_etree)
         product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
@@ -28,21 +28,28 @@ def __product():
             title11 = title1[0].replace('\n', '')
             print(title11.strip())
             at_count += 1 
+            data = {str(at_count) + "__" + title11.strip(): at_count}
+            title_list.update(data)
         except:
             pass
         try:
             title12 = title2[0].replace('\n', '')
             print(title12.strip())
             at_count += 1 
+            data = {str(at_count) + "__" + title12.strip(): at_count}
+            title_list.update(data)
         except:
             pass
         try:
             title13 = title3[0].replace('\n', '')
             print(title13.strip())
             at_count += 1 
+            data = {str(at_count) + "__" + title13.strip(): at_count}
+            title_list.update(data)
         except:
             pass
         count += 1
+    print(title_list)
     print(at_count)
     # url for image
     #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
