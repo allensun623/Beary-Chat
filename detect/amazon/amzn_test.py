@@ -14,12 +14,15 @@ def __product():
     #Because of anti-scrapy, running until get the information or up to 30x
     html_etree = html_request(url_detail)
     print(html_etree)
-    product_title_xpath = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
-    title = html_etree.xpath(product_title_xpath)
-    print(title)
+    product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
+    product_title_xpath2 = "//h1[@id='title']/span[@id='productTitle']/text()"
+    product_title_xpath3 = "//span[@id='productTitle']/text()"
+    title1 = html_etree.xpath(product_title_xpath1)
+    title2 = html_etree.xpath(product_title_xpath2)
+    title3 = html_etree.xpath(product_title_xpath3)
     # url for image
-    url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
-    print(url_img)
+    #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
+    #print(url_img)
 
 
 def html_request(url_detail):
