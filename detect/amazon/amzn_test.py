@@ -15,9 +15,9 @@ def __product():
     title = ""
     at_count = 0
     title_list = {}
-    while count < 100:
+    while count < 500:
         html_etree = html_request(url_detail)
-        print(html_etree)
+        print(count)
         product_title_xpath1 = "//div[@id='title_feature_div']/div[@id='titleSection']/h1[@id='title']/span[@id='productTitle']/text()"
         product_title_xpath2 = "//h1[@id='title']/span[@id='productTitle']/text()"
         product_title_xpath3 = "//span[@id='productTitle']/text()" 
