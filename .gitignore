@@ -1,5 +1,5 @@
 #Scrapy ".DS_Store"
-.DS_Store
+*.DS_Store
 
 #python compiles file
 *.pyc

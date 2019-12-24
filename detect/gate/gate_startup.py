@@ -10,20 +10,26 @@ def __startup():
     url = 'https://www.gate.io/startup'
     page = requests.Session().get(url)
     tree = html.fromstring(page.text)
-    startup_project = tree.xpath('//a[@class="su-item-title"]/h3/text()') #get startup project
-    startup_tpye = tree.xpath("//div[@class='ti-status status-txt']/text()")
-    time_tpye = tree.xpath("//div[@class='item-state']/text()")
-    timer = tree.xpath('//div[@class="item-state"]/span[@class="timer-box"]/text()')
-    amount = tree.xpath('//div[@class="item-box zt2"]/ul[@class="su-dtl"]/li/b[@class="item-total"]/text()')
-    url_img = tree.xpath('//a[@class="img-con"]/img[@class="item-img"]/@src') # get related hyper link
+    startup_project = tree.xpath('//a[@class="su-item-title"]/h3/text()')[0] #get startup project
+    startup_tpye = tree.xpath("//div[@class='ti-status status-txt']/text()")[0]
+    time_tpye = tree.xpath("//div[@class='item-state']/text()")[0]
+    timer = tree.xpath('//div[@class="item-state"]/span[@class="timer-box"]/text()')[0]    
+    amount_type = tree.xpath('//ul[@class="su-dtl"]/li/text()')[0]
+    amount = tree.xpath("//ul[@class='su-dtl']/li/b[@class='item-total']/strong/text()")[0] + \
+            tree.xpath("//ul[@class='su-dtl']/li/b[@class='item-total']/text()")[0]
+    url_img = tree.xpath('//a[@class="img-con"]/img[@class="item-img"]/@src')[0] # get related hyper link
 
     #news and urls save as dictionary
     news_dictionary = {
         "url_project": url,
-        "startup_project": startup_tpye[0]+ ": " + startup_project[0],
-        "amount": "目标: " + amount[0].replace(' ', ''), #no space
-        "timer": time_tpye[0].replace('\r', '').replace('\n', '').replace(' ', '') + " " + timer[0],
-        "url_img": url_img[0] 
+        "startup_project": startup_tpye+ ": " + startup_project,
+        "amount": amount_type + ": $" + amount.replace(' ', ''), #no space
+        "timer": time_tpye.replace('\r', '') \
+                        .replace('\n', '') \
+                        .replace(' ', '') + \
+                        " " + \
+                        timer,
+        "url_img": url_img 
         }
     
     return news_dictionary
@@ -46,7 +52,10 @@ def detect():
     )
 
 def main():
-    detect()
+    try:
+        detect()
+    except:
+        pass
 
 if __name__ == "__main__":
     main()
