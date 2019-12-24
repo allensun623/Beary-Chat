@@ -24,12 +24,24 @@ def __product():
         title1 = html_etree.xpath(product_title_xpath1)
         title2 = html_etree.xpath(product_title_xpath2)
         title3 = html_etree.xpath(product_title_xpath3)
-        if title1 is not None:
+        try:
+            title11 = title1[0].replace('\n', '')
+            print(title11.strip())
             at_count += 1 
-        if title2 is not None:
+        except:
+            pass
+        try:
+            title12 = title2[0].replace('\n', '')
+            print(title12.strip())
             at_count += 1 
-        if title3 is not None:
+        except:
+            pass
+        try:
+            title13 = title3[0].replace('\n', '')
+            print(title13.strip())
             at_count += 1 
+        except:
+            pass
         count += 1
     # url for image
     #url_img = html_etree.xpath("//div[@id='imgTagWrapperId']/img[@id='landingImage']/@src")
