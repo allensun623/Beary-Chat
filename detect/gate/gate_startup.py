@@ -36,7 +36,15 @@ def __startup():
 
 def detect():
     # receive the latest news
-    news_info = __startup()
+    try:
+        news_info = __startup()
+    except:
+        news_info = {
+            "startup_project": "NONE",
+            "url_project": "NONE",
+            "amount": "NONE",
+            "url_img": "https://www.gate.io/images/startup/pendding.png"
+        }
     bs.send(True, 
             "GATE STARTUP", 
             "GATE STARTUP", 
@@ -52,10 +60,8 @@ def detect():
     )
 
 def main():
-    try:
-        detect()
-    except:
-        pass
+    detect()
+
 
 if __name__ == "__main__":
     main()
