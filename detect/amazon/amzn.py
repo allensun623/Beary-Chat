@@ -25,7 +25,8 @@ def __product(url_product, url_img_xpath, product_title_xpath, product_price_xpa
     try:
         product_title = html_etree.xpath(product_title_xpath)[0]         
     except: 
-        product_title = "Failed to get infomation"    
+        product_title = "Failed to get infomation" 
+        if_send = True   
     for price in product_price_xpath:
         try:
             product_price = html_etree.xpath(price)[0] 
