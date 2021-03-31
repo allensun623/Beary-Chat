@@ -4,7 +4,7 @@ chardet==3.0.4
 fake-useragent==0.1.11
 idna==2.8
 loguru==0.3.2
-lxml==4.4.2
+lxml==4.6.3
 PySnooper==0.3.0
 requests==2.22.0
 urllib3==1.25.7
